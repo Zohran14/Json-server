@@ -1,0 +1,24 @@
+version: "3"
+volumes:
+  docker:
+
+services:
+  database:
+    image: mongo
+    container_name: db-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - docker:/data/db
+
+  express:
+    container_name: back-end
+    build: .
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    environment:
+      DB_LOCAL_URL: mongodb://db:27017/socket
+    depends_on:
+      - database
