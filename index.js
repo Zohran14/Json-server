@@ -9,7 +9,7 @@ const serverSchema = new Schema({
 const model = mongoose.models.server_safekids || mongoose.model('server_safekids', serverSchema)
 const app = express()
 app.use(express.json());
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 80;
 
 app.get('/', (req, res) => {
     res.send('Hello World');
